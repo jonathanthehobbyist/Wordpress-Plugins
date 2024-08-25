@@ -1,0 +1,9 @@
+#ignore ZIP files for the moment
+table-of-contents.zip
+read-progress.zip
+
+#ignore log files
+.log
+
+#ignore macOS system files
+.DS_Store
