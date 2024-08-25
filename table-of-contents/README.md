@@ -16,3 +16,6 @@ This is a plugin which uses a special template to display a sidebar, and that si
 - Next, page in quesiton will need to be set to particular template
 - Next, special css will be called to arrange sidebar so it floats / for mobile 
 - Next, 
+
+## Notes
+- I'll need a way for users to delete the added files on removal

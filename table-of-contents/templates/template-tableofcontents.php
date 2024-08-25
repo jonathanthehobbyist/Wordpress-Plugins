@@ -8,4 +8,11 @@
  * @since Twenty Twenty 1.0
  */
 
-get_template_part( 'singular' );
+//original call
+//get_template_part( 'singular-tableofcontents' );
+
+//new
+//installed into active theme directory, so calling out to plugin directory
+include WP_PLUGIN_DIR . '/table-of-contents/templates/singlar-tableofcontents.php';
+
+

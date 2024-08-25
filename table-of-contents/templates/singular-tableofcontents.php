@@ -9,6 +9,8 @@
  * @since Twenty Twenty 1.0
  */
 
+//this is included within the plugin directory...
+
 get_header();
 ?>
 
@@ -28,8 +30,21 @@ get_header();
 	?>
 
 </main><!-- #site-content -->
-<?php get_sidebar( 'tableofcontents' ); ?>
-<?php get_template_part( 'template-parts/footer-menus-widgets' ); ?>
+<?php 
+	//original
+	//get_sidebar( 'tableofcontents' ); 
+
+	//calling out to plugin directory
+	include WP_PLUGIN_DIR . '/table-of-contents/sidebar-tableofcontents.php';
+
+?>
+
+<?php 
+
+	//not sure what this is, commenting out for now
+    //get_template_part( 'template-parts/footer-menus-widgets' ); 
+
+?>
 
 <?php
 get_footer();

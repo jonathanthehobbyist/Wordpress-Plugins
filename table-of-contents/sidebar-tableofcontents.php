@@ -1,13 +1,7 @@
-<div id="sidebar-tableofcontents" class="sidebar">
-		
-	<?php if ( is_active_sidebar( 'tableofcontents' ) ) : ?>
-		<?php dynamic_sidebar( 'tableofcontents' ); ?>
-	<?php else : ?>
-		<!-- Time to add some widgets! -->
-		<script>
+<aside id="sidebar-tableofcontents" class="sidebar">
+		<script type="text/javascript">
 		
 	//remove links from comments
-	
 	//iterate through list
 	function FULinkBots() {
 	    
@@ -51,6 +45,12 @@
         
         if (window.innerWidth < 960) {
             //if the viewport is small, load to article
+
+            //how could this work with pages?
+
+
+
+
             var parentDiv = document.querySelector('.post-inner');
             //console.log(parentDiv);
         } else {
@@ -228,5 +228,4 @@ function setupIntersectionObserver() {
 setupIntersectionObserver();
 
         </script>
-	<?php endif; ?>
-</div>
+</aside>
