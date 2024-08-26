@@ -47,6 +47,7 @@ function pluginprefix_activate () {
 
 register_activation_hook(__FILE__, 'pluginprefix_activate' );
 
+add_action( 'widgets_init', 'table_of_contents_sidebar' );
 
 
 //Deactivate plugin
@@ -56,20 +57,40 @@ register_activation_hook(__FILE__, 'pluginprefix_activate' );
 *
 */
 
+function pluginprefix_deactivate() {
+	// Remove files previously added - be damn careful
+
+	// Define path of file(s) to be removed
+	$will_delete = get_stylesheet_directory() . '/templates/template-tableofcontents.php';
+
+
+	// Check if the template already exists in the theme directory
+	// Will probably need a for loop eventually
+    if (file_exists($will_delete)) {
+
+        // Copy the file from the plugin folder to the theme folder
+        unlink($will_delete);
+    }
+
+}
+
+register_deactivation_hook(__FILE__,  'pluginprefix_deactivate' );
+
+
 
 
 
 // Hook the function to the WordPress 'init' action
-//add_action('init', 'mta_add_template_file');
+// add_action('init', 'mta_add_template_file');
 
-add_action( 'widgets_init', 'table_of_contents_sidebar' );
+
 
 function mta_add_template_file() {
     // Define the source template file path (inside the plugin folder)
     $source_template = plugin_dir_path(__FILE__) . 'templates/template-tableofcontents.php';
 
     // Define the destination path (inside the active theme folder)
-    //This one must load into the active theme directory, all others can be called from the plugin directory
+    // This one must load into the active theme directory, all others can be called from the plugin directory
     $destination_template = get_stylesheet_directory() . '/templates/template-tableofcontents.php';
 
     // Check if the template already exists in the theme directory
