@@ -1,8 +1,7 @@
 <?php
 /**
  * Plugin Name: Table of contents
- * Description: Adds a table of contents to pages
- * Version: 0.1
+ * Description: Adds a table of contents to pages and posts that use a newly installed template file called Table of Contents Template
  * Author: Jon Simmons
  */
 
@@ -27,6 +26,11 @@ function mta_add_template_file() {
         // Copy the file from the plugin folder to the theme folder
         copy($source_template, $destination_template);
     }
+
+    //Global variable
+    //$plugin_template_path = plugins_url ('templates/singlar-tableofcontents.php',__FILE__);
+    define('table_of_contents_dir', plugin_dir_path(__FILE__));
+
         //DELETE by 9.01.24
 
     //adding other files, will need the conditional to check if they exist

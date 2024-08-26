@@ -35,7 +35,8 @@ get_header();
 	//get_sidebar( 'tableofcontents' ); 
 
 	//calling out to plugin directory
-	include WP_PLUGIN_DIR . '/table-of-contents/sidebar-tableofcontents.php';
+	//$plugin_file_get = plugin_dir_path(__FILE__) . 'table-of-contents/sidebar-tableofcontents.php';
+	//require_once($plugin_file_get);
 
 ?>
 
