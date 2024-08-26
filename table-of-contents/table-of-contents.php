@@ -7,8 +7,60 @@
 
 //Add 3 files 1) ADDED template-tableofcontents.php in the active theme directory which calls 2) ADDED singular-tableofcontents.php in the active theme directory which needs 3) sidebar-tableofcontents.php in the active theme directory
 
+
+//Activate plugin
+/*
+* from https://developer.wordpress.org/plugins/plugin-basics/activation-deactivation-hooks/
+* On activate, download files to proper directories
+*
+*/
+
+function pluginprefix_place_files() {
+
+	//function blah() copies files from the plugin directory into Wordpress core
+
+	//define files to be inserted from plugin folder
+	$source_template = plugin_dir_path(__FILE__) . 'templates/template-tableofcontents.php';
+
+	//define destination path
+	$destination_template = get_stylesheet_directory() . '/templates/template-tableofcontents.php';
+
+	// Check if the template already exists in the theme directory
+    if (!file_exists($destination_template)) {
+
+        // Copy the file from the plugin folder to the theme folder
+        copy($source_template, $destination_template);
+    }
+}
+
+function pluginprefix_define_paths() {
+	//Global variable
+    //$plugin_template_path = plugins_url ('templates/singlar-tableofcontents.php',__FILE__);
+    define('table_of_contents_dir', plugin_dir_path(__FILE__));
+}
+
+function pluginprefix_activate () {
+	//Trigger function to copy files
+	pluginprefix_place_files();
+	pluginprefix_define_paths();
+}
+
+register_activation_hook(__FILE__, 'pluginprefix_activate' );
+
+
+
+//Deactivate plugin
+/*
+* On deactivate, delete files from directories - clean way to handle this
+*
+*
+*/
+
+
+
+
 // Hook the function to the WordPress 'init' action
-add_action('init', 'mta_add_template_file');
+//add_action('init', 'mta_add_template_file');
 
 add_action( 'widgets_init', 'table_of_contents_sidebar' );
 
@@ -29,7 +81,7 @@ function mta_add_template_file() {
 
     //Global variable
     //$plugin_template_path = plugins_url ('templates/singlar-tableofcontents.php',__FILE__);
-    define('table_of_contents_dir', plugin_dir_path(__FILE__));
+    //define('table_of_contents_dir', plugin_dir_path(__FILE__));
 
         //DELETE by 9.01.24
 
