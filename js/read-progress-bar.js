@@ -1,4 +1,5 @@
     function readTimeScroll() {
+         console.log('Background Color Value:', readProgressScriptData.readProgressColor);
   //console.log("fired");
         /*
     function ready(fn) {
@@ -19,11 +20,13 @@ https://youmightnotneedjquery.com/#ready
         
         document.addEventListener("DOMContentLoaded", function(event) { 
             
+            // Add element to the HTML body
             document.body.prepend(barElement);
+
         });
     } //end function
     
-    document.addEventListener(
+document.addEventListener(
   "scroll",
   function() {
     var scrollTop =
