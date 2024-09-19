@@ -1,10 +1,18 @@
-# Wordpress-Plugins
+# Read-Progress-Plugin
 
-public_html
-find twentytwenty and twentytwenty-child here
-Table of Contents main code in sidebar-primary in twentytwenty-child
-Requires template-toc-sidebar-full-width.php in twentytwenty-child > templates
+## Overview
+This subdirectory contains a Wordpress plugin that gives the reader 
+a left-to-right progressive indicator bar that advances based on
+the page scroll position
 
-read-progress-plugin
+## Structure
+- 'read-time-plugin.php': describes the plugin name, author and enqueues the js
+- 'js': folder containing javascript
+- 'css': folder containing css
 
-update.[hcp].net
+## Usage
+this plugin creates a read-progress indicator based on the scroll position of the page
+the color of the indicator currently is defined on line 3 of style-read-progress-bar.css
+default color: background: linear-gradient(to right,rgb(240, 82, 82)
+
+## License
