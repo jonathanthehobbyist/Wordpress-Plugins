@@ -9,12 +9,6 @@ Author URI: https://www.jonsimmons.co
 version: 1.0.0
 */
 
-/* 
-
-https://stackoverflow.com/questions/9141885/how-to-load-javascript-in-wordpress-plugin
-
-*/
-
 /*  ----------- ENQUEUE SCRIPTS & STYLES ----------  */
 
 function read_progress_enqueue_styles() {
@@ -243,16 +237,5 @@ function readprogress_options_page_html() {
     </div>
     <?php
 }
-
-
-
-
-
-
-
-
-
-
-
 
 ?>

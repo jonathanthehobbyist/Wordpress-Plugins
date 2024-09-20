@@ -2,19 +2,37 @@
 
          /*  ----------- USER CONFIG ----------  */
 
-         /*
-        if (typeof myVariable !== 'undefined') {
-            console.log('myVariable is defined');
-        } else {
-            console.log('myVariable is not defined');
+        // Tests to see if HEX input is blank
+        function isValidAlphanumeric(input) {
+            // Check if input is a string and has at least 3 alphanumeric characters
+            const regexHex = /^[a-zA-Z0-9]{3,}$/;
+            return regexHex.test(input);
         }
-         */
 
+        // Tests to see if HEIGHT input is blank
+        function isValidNumericOne(input) {
+            // Check if input is a string and has at least 3 alphanumeric characters
+            const regexHeight = /^[0-9]{1,}$/;
+            return regexHeight.test(input);
+        }
 
+        // Test if color has been defined
+        if (typeof readProgressScriptData.readProgressColor !== 'undefined' && isValidAlphanumeric(readProgressScriptData.readProgressColor)) {
+            // Variable that's easier to read
+            var readProgressHexColor = '#' + readProgressScriptData.readProgressColor;
+        } else {
+            // Set a default
+            var readProgressHexColor = '#888888';
+        }
 
-        //
-        var readProgressHexColor = '#' + readProgressScriptData.readProgressColor;
-        var readProgressHeight = readProgressScriptData.readProgressHeight + 'px';
+        // Test if height has been defined
+        if (typeof readProgressScriptData.readProgressHeight !== 'undefined' && isValidNumericOne(readProgressScriptData.readProgressHeight)) {
+            // Variable that's easier to read
+            var readProgressHeight = readProgressScriptData.readProgressHeight + 'px';
+        } else {
+            // Set a default
+            var readProgressHeight = '4px';
+        }
 
         // Create the new div elements
         let barElement = document.createElement('div');
