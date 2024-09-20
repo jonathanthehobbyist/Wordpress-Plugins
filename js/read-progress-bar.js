@@ -1,16 +1,21 @@
     function readTimeScroll() {
-         console.log('Background Color Value:', readProgressScriptData.readProgressColor);
-  //console.log("fired");
-        /*
-    function ready(fn) {
-        if (document.readyState !== 'loading') {
-            fn();
+
+         /*  ----------- USER CONFIG ----------  */
+
+         /*
+        if (typeof myVariable !== 'undefined') {
+            console.log('myVariable is defined');
         } else {
-            document.addEventListener('DOMContentLoaded', fn);
+            console.log('myVariable is not defined');
         }
-    }
-https://youmightnotneedjquery.com/#ready
-        */
+         */
+
+
+
+        //
+        var readProgressHexColor = '#' + readProgressScriptData.readProgressColor;
+        var readProgressHeight = readProgressScriptData.readProgressHeight + 'px';
+
         // Create the new div elements
         let barElement = document.createElement('div');
         barElement.className = 'read-time-progress-bar';
@@ -22,6 +27,13 @@ https://youmightnotneedjquery.com/#ready
             
             // Add element to the HTML body
             document.body.prepend(barElement);
+
+            // Set --progress-color variable in css
+            barElement.style.setProperty('--progress-color', readProgressHexColor);
+            //console.log('readProgressHexColor', readProgressHexColor);
+
+            // Set height 
+            barElement.style.height = readProgressHeight;
 
         });
     } //end function
@@ -42,7 +54,6 @@ document.addEventListener(
   { passive: true }
 );
     
-    
-    readTimeScroll();
+readTimeScroll();
     
     

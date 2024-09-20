@@ -36,10 +36,15 @@ function read_progress_enqueue_styles() {
     );
 
     $options = get_option( 'readprogress_options' );
-    $read_progress_color = isset( $options['readprogress_field_pill'] ) ? $options['readprogress_field_pill'] : '';
 
+    // Validate
+    $read_progress_color = isset( $options['readprogress_field_pill'] ) ? $options['readprogress_field_pill'] : '';
+    $read_progress_height = isset( $options['readprogress_field_height'] ) ? $options['readprogress_field_height'] : '';
+
+    // Pass variables
      wp_localize_script( 'read-progress-bar-js', 'readProgressScriptData', array(
-                        'readProgressColor' => $read_progress_color ,
+                        'readProgressColor' => $read_progress_color,
+                        'readProgressHeight' => $read_progress_height,
                     ));
 }
 
@@ -67,7 +72,7 @@ function readprogress_settings_init() {
         'readprogress'
     );
 
-    // Register a new field in the "readprogress_section_developers" section, inside the "readprogress" page.
+    // HEX field
     add_settings_field(
         'readprogress_field_pill', // As of WP 4.6 this value is used only internally.
                                 // Use $args' label_for to populate the id inside the callback.
@@ -78,6 +83,20 @@ function readprogress_settings_init() {
         array(
             'label_for'         => 'readprogress_field_pill',
             'class'             => 'readprogress_row',
+            'readprogress_custom_data' => 'custom',
+        )
+    );
+
+    // Height Field
+    add_settings_field(
+        'readprogress_field_height', // Field ID
+        __( 'Progress Bar Height', 'readprogress' ),  // LAbel
+        'readprogress_field_height_cb', // Callback func to display input field
+        'readprogress', // Page slug
+        'readprogress_section_developers', // Section slug
+        array(
+            'label_for' => 'readprogress_field_height',
+            'class' => 'readprogress_row',
             'readprogress_custom_data' => 'custom',
         )
     );
@@ -145,6 +164,25 @@ function readprogress_field_pill_cb( $args ) {
     </script>
 
 
+    <?php
+}
+
+function readprogress_field_height_cb( $args ) {
+    // Get the value of the setting we've registered with register_setting()
+    $options = get_option( 'readprogress_options' );
+    $progress_bar_height = isset( $options[ $args['label_for'] ] ) ? $options[ $args['label_for'] ] : ''; // Get the current value
+    ?>
+
+    <input 
+        type="text" 
+        id="<?php echo esc_attr( $args['label_for'] ); ?>" 
+        name="readprogress_options[<?php echo esc_attr( $args['label_for'] ); ?>]" 
+        value="<?php echo esc_attr( $progress_bar_height ); ?>" 
+        data-custom="<?php echo esc_attr( $args['readprogress_custom_data'] ); ?>">
+
+    <p class="description">
+        <?php esc_html_e( 'Enter the height of the progress bar in pixels (e.g., 5)', 'readprogress' ); ?>
+    </p>
     <?php
 }
 
